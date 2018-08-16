@@ -23,4 +23,8 @@ public class BTS {
         else
             return "Valor contém na Árvore: " + result;
     }
+    
+//    public void remover(int e){
+//        a.remove(e, a.root());
+//    }
 }

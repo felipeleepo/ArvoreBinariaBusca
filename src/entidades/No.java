@@ -11,7 +11,7 @@ package entidades;
  */
 public class No {
     private int elemento;
-    private No pai, fiDireito, fiEsquerdo;
+    No pai, fiDireito, fiEsquerdo;
     
     public No (int s){
         elemento = s;

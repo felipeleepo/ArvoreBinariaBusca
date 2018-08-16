@@ -18,18 +18,22 @@ public class ArvoreBinaria implements IArvoreBinariaBusca{
     private int tamanho;
 
     public No Insert(int o, No n){
+        
         if(isEmpty()){
             raiz = new No(o);
             tamanho++;
-            System.out.println("Valor inserido na Raíz: " +raiz.getElemento());
-        }else if(n == null){
+            System.out.println("Valor inserido na Raíz " + raiz.getElemento());
+            return raiz;
+        }
+        
+        if(n == null){
             n = new No(o);
             tamanho++;
-            System.out.println("Valor inserido: " +n.getElemento());
+            System.out.println("Valor inserido " + n.getElemento());
         }else if(o < n.getElemento())
-            n.setFiEsquerdo(Insert(o, n.getFiEsquerdo())); 
+            n.fiEsquerdo = Insert(o, n.getFiEsquerdo()); 
         else
-            n.setFiDireito(Insert(o, n.getFiDireito()));
+            n.fiDireito = Insert(o, n.getFiDireito());
         return n;
     }
     
@@ -40,11 +44,38 @@ public class ArvoreBinaria implements IArvoreBinariaBusca{
             return -1;
         if (o == n.getElemento())
             return n.getElemento();
-        else if(o < n.getElemento())
-            return Search(o, n.getFiEsquerdo());
-        else
-            return Search(o, n.getFiDireito());
+        else if(o < n.getElemento()){System.out.println("esq");
+            return Search(o, n.getFiEsquerdo());}
+        else{System.out.println("dir");
+            return Search(o, n.getFiDireito());}
     }
+    
+//    public No Search2(int o, No n){
+//        if(isEmpty())
+//            return null;
+//        if(n == null)
+//            return null;
+//        if(o == n.getElemento())
+//            return n;
+//        else if(o < n.getElemento()){System.out.println("esq");
+//            Search(o, n.getFiEsquerdo());}
+//        else{System.out.println("dir");
+//            Search(o, n.getFiDireito());}
+//        return null;
+//    }
+//    
+//    public No remove(int o, No n){
+//        
+//        if(isEmpty()){
+//            System.out.println("Arvore Vazia");
+//            return null;
+//        }
+//        
+//        No aux = Search2(o, n);
+//        aux = aux.fiDireito;
+//        while()
+//        return null;
+//    }
     public ArvoreBinaria() {
         raiz = null;
         this.tamanho = 0;
