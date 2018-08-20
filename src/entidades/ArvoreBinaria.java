@@ -50,32 +50,75 @@ public class ArvoreBinaria implements IArvoreBinariaBusca{
             return Search(o, n.getFiDireito());}
     }
     
-//    public No Search2(int o, No n){
-//        if(isEmpty())
-//            return null;
-//        if(n == null)
-//            return null;
-//        if(o == n.getElemento())
-//            return n;
-//        else if(o < n.getElemento()){System.out.println("esq");
-//            Search(o, n.getFiEsquerdo());}
-//        else{System.out.println("dir");
-//            Search(o, n.getFiDireito());}
-//        return null;
-//    }
-//    
-//    public No remove(int o, No n){
-//        
-//        if(isEmpty()){
-//            System.out.println("Arvore Vazia");
-//            return null;
-//        }
-//        
-//        No aux = Search2(o, n);
-//        aux = aux.fiDireito;
-//        while()
-//        return null;
-//    }
+    public No remove(int o, No n){
+        
+        if(isEmpty()){
+            System.out.println("Arvore Vazia");
+            return null;
+        }
+        
+        if(n.getElemento() == o){
+            if(n.fiDireito == n.fiEsquerdo)
+                return null;
+            else if(n.fiEsquerdo == null)
+                return n.fiDireito;
+            else if(n.fiDireito == null)
+                return n.fiEsquerdo;
+            else{
+                No d, e, aux = null;
+                d = n.fiDireito;
+                e = n.fiDireito;
+                while(e.fiEsquerdo != null){
+                    aux = e;
+                    e = e.fiEsquerdo;
+                }
+                n.setElemento(e.getElemento());
+                e = null;
+                aux.fiEsquerdo = null;
+                return n;
+            }            
+        }else if(n.getElemento() > o){System.out.println("esq"); 
+            n.fiEsquerdo = remove(o, n.fiEsquerdo);}
+        else{System.out.println("dir");
+            n.fiDireito = remove(o, n.fiDireito);}
+        return n;
+    }
+    
+    public void printInOrder(No n) {
+        if(n != null) {
+            printInOrder(n.fiEsquerdo);   
+            System.out.println(n.getElemento());
+            printInOrder(n.fiDireito);  
+        }
+    }
+    
+    private void printNodeValue(No n){
+        
+        if (n == null) {
+            System.out.print("<null>");
+        } else {
+            System.out.print(n.getElemento());
+        }
+        System.out.print('\n');
+    }
+    
+    public void printTree(No n, boolean isRight, String indent){
+        if (n.fiDireito != null) {
+            printTree(n.fiDireito, true, indent + (isRight ? "        " : " |      "));
+        }
+        System.out.print(indent);
+        if (isRight) {
+            System.out.print(" /");
+        } else {
+            System.out.print(" \\");
+        }
+        System.out.print("----- ");
+        printNodeValue(n);
+        if (n.fiEsquerdo != null) {
+            printTree(n.fiEsquerdo, false, indent + (isRight ? " |      " : "        "));
+        }
+    }
+    
     public ArvoreBinaria() {
         raiz = null;
         this.tamanho = 0;

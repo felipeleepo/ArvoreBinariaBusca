@@ -17,6 +17,9 @@ public class Main {
         bts.inserir(3);
         bts.inserir(5);
         bts.inserir(1);
-        System.out.println(bts.buscar(1));
+        bts.remover(2);
+        System.out.println(bts.buscar(3));
+        System.out.println(bts.buscar(4));
+        bts.Imprimir();
     }
 }

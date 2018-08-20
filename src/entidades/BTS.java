@@ -24,7 +24,15 @@ public class BTS {
             return "Valor contém na Árvore: " + result;
     }
     
-//    public void remover(int e){
-//        a.remove(e, a.root());
-//    }
+    public void remover(int e){
+        System.out.println((a.remove(e, a.root())).getElemento());
+    }
+    
+    public void ImprimirEmOrdem() {
+        a.printInOrder(a.root());
+    }
+    
+    public void Imprimir(){
+        a.printTree(a.root(), false, "");
+    }
 }
